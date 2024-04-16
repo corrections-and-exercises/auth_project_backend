@@ -1,8 +1,13 @@
 import mongoose from 'mongoose';
-const { Schema, model } = mongoose;
+const { Schema, model, ObjectId } = mongoose;
 
 const blogSchema = new Schema({
     title: { type: String, required: [true, 'Title is required'] },
+    author: {
+        type: ObjectId,
+        ref: 'User',
+        required: [true, 'Author is required'],
+    },
     image: { type: String, required: [true, 'Image is required'] },
     body: { type: String, required: [true, 'Body is required'] },
     date: { type: Date, default: Date.now },
